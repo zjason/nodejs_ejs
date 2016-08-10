@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>YoungFlow - Find Your Perfect Match</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="/static/css/agency.css" rel="stylesheet">
+    <link href="/static/css/hover.css" rel="stylesheet" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body >
+<% include templates/navbar.ejs %>
+    <section>
+        <div class="container" ng-app="">
+            <p>Name : <input type="text" ng-model="name"></p>
+            <h5>Hello {{name}}</h5>
+            <h1>Post your house here!</h1>
+            <form class="form-horizontal" name="myForm" ng-controller="FormController">
+                <div class="form-group">
+                    <label for="inputZipcode" class="col-sm-2 control-label">Zipcode</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputZipcode" placeholder="Zipcode" ng-model="zipcode">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLandmark" class="col-sm-2 control-label">Landmark</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputLandmark" placeholder="Landmark">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPrice" class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="inputPrice" placeholder="Price">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Long term lease
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Post</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script>
+        angular.module('formExample', [])
+                .controller('FormController', ['$scope', function($scope) {
+                    $scope.zipcode = 'guest';
+                }]);
+    </script>
+
+</body>
+</html>

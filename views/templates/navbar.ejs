@@ -6,7 +6,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">YoungFlow</a>
+            <a class="navbar-brand page-scroll" href="/">YoungFlow</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -16,7 +16,7 @@
                 </li>
                 <li>
                     <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button> -->
-                    <a class="page-scroll" href="" data-toggle="modal" data-target="#myModal" id="status"><%= user_status %></a>
+                    <%- user_status %>
                 </li>
                 <li>
                     <a class="page-scroll" href="#services">Housing</a>
@@ -142,4 +142,4 @@
     </div>
 </div>
 
-<script src="javascript/navbar.js"></script>
+<script src="/static/javascript/navbar.js"></script>

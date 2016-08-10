@@ -61,13 +61,14 @@ router.get('/', function(req, res, next) {
     console.log(rd);
 
     if (req.session.username){
-      res.render('index', { title: 'YoungFlow', user_status: req.session.username, roomdata: rd });
+      res.render('index', { title: 'YoungFlow', user_status: "<a href='" + "/users/" + req.session.userid + "'>" + req.session.username+"</a>", roomdata: rd });
     }else{
-      res.render('index', { title: 'YoungFlow', user_status: 'LOGIN', roomdata: rd });
+      res.render('index', { title: 'YoungFlow', user_status: "<a class='page-scroll' href='' data-toggle='modal' data-target='#myModal' id='status'>Login</a>", roomdata: rd });
     }
   });
 });
 
+/* POST signup action  */
 router.post('/signup', function (req, res) {
   youngFModel.findOne({email: req.body.email}, function (err, user) {
     if (user) {
@@ -83,19 +84,22 @@ router.post('/signup', function (req, res) {
           console.log("could not save newly added user" + err);
         }else{
           req.session.username = newUser.username;
-          res.redirect('/')
+          req.session.userid = newUser.id;
+          res.redirect('/');
         }
       });
     }
   });
 });
 
+/* POST signin action  */
 router.post('/signin', function(req, res){
   youngFModel.findOne({email: req.body.email}, function (err, user) {
     console.log(req.body.password);
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         req.session.username = user.username;
+        req.session.userid = user.id;
         res.redirect('/');
         return;
       }else{
@@ -109,9 +113,10 @@ router.post('/signin', function(req, res){
   });
 });
 
+/* GET logout action  */
 router.get('/logout', function (req,res) {
   if (req.session.username) {
-    delete req.session.username;
+   req.session.flush();
     res.redirect('/');
   }
 
